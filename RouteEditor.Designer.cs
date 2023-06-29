@@ -30,67 +30,70 @@ namespace LazyController
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            button2 = new Button();
+            Save = new Button();
             panel1 = new Panel();
-            routesControl1 = new ArisakaController.RoutesControl();
-            panel1.SuspendLayout();
+            comboBox1 = new ComboBox();
+            AddRoute = new Button();
             SuspendLayout();
             // 
-            // button1
+            // Save
             // 
-            button1.Location = new Point(457, 415);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 1;
-            button1.Text = "Save";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(12, 415);
-            button2.Name = "button2";
-            button2.Size = new Size(88, 23);
-            button2.TabIndex = 2;
-            button2.Text = "Add Route";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            Save.Location = new Point(584, 414);
+            Save.Name = "Save";
+            Save.Size = new Size(75, 23);
+            Save.TabIndex = 1;
+            Save.Text = "Save";
+            Save.UseVisualStyleBackColor = true;
+            Save.Click += Save_Click;
             // 
             // panel1
             // 
             panel1.AutoScroll = true;
-            panel1.Controls.Add(routesControl1);
-            panel1.Location = new Point(0, -1);
+            panel1.Location = new Point(0, 1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(545, 388);
+            panel1.Size = new Size(670, 388);
             panel1.TabIndex = 3;
             panel1.Paint += panel1_Paint;
             // 
-            // routesControl1
+            // comboBox1
             // 
-            routesControl1.Location = new Point(12, 13);
-            routesControl1.Name = "routesControl1";
-            routesControl1.Size = new Size(493, 72);
-            routesControl1.TabIndex = 0;
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(12, 414);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(132, 24);
+            comboBox1.TabIndex = 6;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // AddRoute
+            // 
+            AddRoute.Location = new Point(150, 415);
+            AddRoute.Name = "AddRoute";
+            AddRoute.Size = new Size(88, 23);
+            AddRoute.TabIndex = 7;
+            AddRoute.Text = "Add Route";
+            AddRoute.UseVisualStyleBackColor = true;
+            AddRoute.Click += AddRoute_Click;
             // 
             // RouteEditor
             // 
             AutoScaleDimensions = new SizeF(7F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(544, 450);
+            ClientSize = new Size(671, 450);
+            Controls.Add(AddRoute);
+            Controls.Add(comboBox1);
             Controls.Add(panel1);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(Save);
             Name = "RouteEditor";
             Text = "Route Editor";
-            panel1.ResumeLayout(false);
+            Load += RouteEditor_Load;
             ResumeLayout(false);
         }
 
         #endregion
-        private Button button1;
-        private Button button2;
+        private Button Save;
         private Panel panel1;
-        private ArisakaController.RoutesControl routesControl1;
+        private ComboBox comboBox1;
+        private Button AddRoute;
     }
 }

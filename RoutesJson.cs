@@ -10,7 +10,7 @@ namespace LazyController
     {
         public string filePath { get; set; }
         public string Route { get; set; }
-        public string FunctionType { get; set; }
+        public FunctionType FunctionType { get; set; }
     }
 
     public class RoutesArrayJson
@@ -18,12 +18,11 @@ namespace LazyController
         public List<RoutesJson> routes = new List<RoutesJson>();
     }
 
-    enum FunctionType
+    public enum FunctionType
     {
         LaunchProgram,
-        Volume,
+        ToggleVolume,
         SetPcToHibernate,
-        SetPcToStandby,
-
+        SetPcToStandby
     }
 }

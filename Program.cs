@@ -2,7 +2,8 @@ using LazyController.Properties;
 using ControllerServer;
 using System.Drawing;
 using LazyController;
-
+using System.Net.Sockets;
+using System.Net;
 
 namespace ArisakaController
 {
@@ -29,6 +30,15 @@ namespace ArisakaController
 
             public TaskTrayApplication()
             {
+                //find local IP
+                string localIP;
+                using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
+                {
+                    socket.Connect("8.8.8.8", 65530);
+                    IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
+                    localIP = endPoint.Address.ToString();
+                }
+
 
                 // Initialize Tray Icon
                 trayIcon = new NotifyIcon()
@@ -38,8 +48,9 @@ namespace ArisakaController
                     {
                         Items =
                         {
-                            new ToolStripMenuItem("Exit", null, Exit),
-                            new ToolStripMenuItem("Properties", null, EditProperties)
+                            new ToolStripMenuItem(localIP, null),
+                            new ToolStripMenuItem("Properties", null, EditProperties),
+                            new ToolStripMenuItem("Exit", null, Exit)
                         },
                     },
 

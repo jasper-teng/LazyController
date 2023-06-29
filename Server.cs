@@ -24,7 +24,13 @@ namespace ControllerServer
             _listener.Prefixes.Add("http://*:" + Port.ToString() + "/");
             _listener.Start();
             Receive();
-            initJson();
+
+
+            //temp write new shit
+            var data = new RoutesArrayJson();
+            data.routes.Add(new RoutesJson {filePath="aaaaaaaaaaaaaaaa", Route="suckmy", FunctionType = FunctionType.LaunchProgram});
+
+            JsonConfigHelper.WriteJson(data);
         }
 
         public void Stop()

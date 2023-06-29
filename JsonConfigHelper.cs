@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace LazyController
 {
-    static class JsonConfigHelper
+    static public class JsonConfigHelper
     {
-        static RoutesArrayJson ReadJson()
+        static public RoutesArrayJson ReadJson()
         {
 
             var docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\LazyControllerRoutes.ini";
@@ -27,7 +27,7 @@ namespace LazyController
 
         }
 
-        static void WriteJson(RoutesArrayJson json)
+        public static void WriteJson(RoutesArrayJson json)
         {
             var docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\LazyControllerRoutes.ini";
             string jsonData = JsonConvert.SerializeObject(json, Formatting.Indented);
