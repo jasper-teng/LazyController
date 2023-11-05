@@ -30,9 +30,10 @@
         {
             label1 = new Label();
             label2 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            name = new TextBox();
+            route = new TextBox();
             label3 = new Label();
+            button1 = new Button();
             SuspendLayout();
             // 
             // label1
@@ -53,19 +54,20 @@
             label2.TabIndex = 1;
             label2.Text = "Route";
             // 
-            // textBox1
+            // name
             // 
-            textBox1.Location = new Point(8, 20);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 2;
+            name.Location = new Point(8, 20);
+            name.Name = "name";
+            name.Size = new Size(100, 23);
+            name.TabIndex = 2;
             // 
-            // textBox2
+            // route
             // 
-            textBox2.Location = new Point(114, 20);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 23);
-            textBox2.TabIndex = 3;
+            route.Location = new Point(114, 20);
+            route.Name = "route";
+            route.Size = new Size(100, 23);
+            route.TabIndex = 3;
+            route.TextChanged += route_TextChanged;
             // 
             // label3
             // 
@@ -76,17 +78,29 @@
             label3.TabIndex = 4;
             label3.Text = "nabei cheebye honggan la";
             // 
+            // button1
+            // 
+            button1.Location = new Point(598, 20);
+            button1.Name = "button1";
+            button1.Size = new Size(23, 23);
+            button1.TabIndex = 5;
+            button1.Text = "X";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // ToggleVolumeControl
             // 
             AutoScaleDimensions = new SizeF(7F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(button1);
             Controls.Add(label3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(route);
+            Controls.Add(name);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "ToggleVolumeControl";
             Size = new Size(624, 52);
+            Load += ToggleVolumeControl_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -95,8 +109,9 @@
 
         private Label label1;
         private Label label2;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox name;
+        private TextBox route;
         private Label label3;
+        private Button button1;
     }
 }

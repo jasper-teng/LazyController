@@ -8,7 +8,8 @@ namespace LazyController
 {
     public class RoutesJson
     {
-        public string filePath { get; set; }
+        public string name { get; set; }
+        public string configString { get; set; }
         public string Route { get; set; }
         public FunctionType FunctionType { get; set; }
     }
@@ -22,7 +23,9 @@ namespace LazyController
     {
         LaunchProgram,
         ToggleVolume,
-        SetPcToHibernate,
-        SetPcToStandby
+        PowerOptions,
+        OpenWebsite,
+        PanicButton,
+        VirtualDesktop
     }
 }

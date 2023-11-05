@@ -5,21 +5,34 @@ using System.Net;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using AudioSwitcher.AudioApi.CoreAudio;
 using System.Runtime.InteropServices;
 using LazyController;
+using System.Diagnostics;
 
 namespace Functions
 {
     static class AppFunctions
     {
-        static void OpenProgram() { 
-            
-        }
+        public static void OpenProgram(string filepath) {
+            try
+            {
+                var p = new Process();
+                p.StartInfo = new ProcessStartInfo(filepath)
+                {
+                    UseShellExecute = true
+                };
+                p.Start();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred: " + ex.Message);
+            }
 
+        }
         public static void ToggleVolume()
         {
             KeyboardInputSimulation.ToggleVolume();
         }
+
     }
 }

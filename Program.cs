@@ -4,6 +4,7 @@ using System.Drawing;
 using LazyController;
 using System.Net.Sockets;
 using System.Net;
+using System.Runtime.CompilerServices;
 
 namespace ArisakaController
 {
@@ -16,11 +17,17 @@ namespace ArisakaController
         static void Main()
         {
             //start vs as admin and open the port
-            HttpServer server = new HttpServer();
+            //if you dont want to do that you can do this instead
+            // netsh http add urlacl url=http://*:6969/ user=Administrator put this into psh
+            HttpServer server = HttpServer.GetInstance();
             server.Start();
 
+
             ApplicationConfiguration.Initialize();
+
+
             Application.Run(new TaskTrayApplication());
+
         }
         
 
@@ -30,6 +37,7 @@ namespace ArisakaController
 
             public TaskTrayApplication()
             {
+
                 //find local IP
                 string localIP;
                 using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
@@ -57,6 +65,8 @@ namespace ArisakaController
                     Icon = Resources.icon,
                     Visible = true
                 };
+
+                JsonConfigHelper.ReadJson();
             }
 
             void Exit(object sender, EventArgs e)
@@ -67,7 +77,7 @@ namespace ArisakaController
                 Application.Exit();
             }
 
-            void EditProperties(object sender, EventArgs e)
+            public void EditProperties(object sender, EventArgs e)
             {
                 //do some fucking shit open up the form lmao
                 var form = new RouteEditor();

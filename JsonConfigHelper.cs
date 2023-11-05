@@ -11,10 +11,16 @@ namespace LazyController
     {
         static public RoutesArrayJson ReadJson()
         {
+            //we are changing this to Appdata
+            var docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\LazyControllerRoutes.json";
 
-            var docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\LazyControllerRoutes.ini";
+            if (!File.Exists(docpath))
+            {
+                // Create the file
+                File.Create(docpath).Close();
+            }
+
             string jsonData = File.ReadAllText(docpath);
-
 
             if(jsonData == null)
             {
@@ -29,51 +35,12 @@ namespace LazyController
 
         public static void WriteJson(RoutesArrayJson json)
         {
-            var docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\LazyControllerRoutes.ini";
+            var docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\LazyControllerRoutes.json";
             string jsonData = JsonConvert.SerializeObject(json, Formatting.Indented);
 
             File.WriteAllText(docpath, jsonData);
 
             Console.WriteLine("New JSON file created.");
         }
-
-
-
-/*
-        public void initJson()
-        {
-
-            var docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\LazyControllerRoutes.ini";
-
-            if (File.Exists(docpath))
-            {
-                // Read the JSON file
-                string jsonData = File.ReadAllText(docpath);
-
-                // Deserialize the JSON data into an object
-                var data = JsonConvert.DeserializeObject<RoutesArrayJson>(jsonData);
-
-                // Do something with the data
-
-            }
-            else
-            {
-                //sample text
-                var piss = new RoutesArrayJson();
-
-                piss.routes.Add(new RoutesJson() { FunctionType = "asdasdasdsad" });
-                piss.routes.Add(new RoutesJson() { FunctionType = "ball" });
-                piss.routes[0] = (new RoutesJson() { FunctionType = "shkadjlaskdjlaskdjlasdkljasdkljaskdjl" });
-
-                // Serialize the object into JSON data
-                string jsonData = JsonConvert.SerializeObject(piss, Formatting.Indented);
-
-                // Write the JSON data to a file
-                File.WriteAllText(docpath, jsonData);
-
-                Console.WriteLine("New JSON file created.");
-            }
-        }*/
-
     }
 }

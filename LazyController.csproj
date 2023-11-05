@@ -2,16 +2,25 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
 	  <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
-	  <PublishSingleFile>true</PublishSingleFile>
+	  <StartupObject>ArisakaController.Program</StartupObject>
+	  <ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
+	  
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AudioSwitcher.AudioApi.CoreAudio" Version="3.0.3" />
+    <Content Include="Resources\favicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Costura.Fody" Version="5.7.0">
+      <PrivateAssets>all</PrivateAssets>
+      <!-- <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets> -->
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
@@ -41,5 +50,4 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-
 </Project>

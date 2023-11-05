@@ -49,10 +49,12 @@ namespace LazyController
             // panel1
             // 
             panel1.AutoScroll = true;
+            panel1.BackColor = SystemColors.Control;
             panel1.Location = new Point(0, 1);
             panel1.Name = "panel1";
             panel1.Size = new Size(670, 388);
             panel1.TabIndex = 3;
+            panel1.ControlRemoved += panelChanged;
             panel1.Paint += panel1_Paint;
             // 
             // comboBox1

@@ -8,13 +8,31 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM64 = Debug|ARM64
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|ARM64 = Release|ARM64
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{86B99789-2786-4A0E-ADF4-25E3E26B4ECC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{86B99789-2786-4A0E-ADF4-25E3E26B4ECC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86B99789-2786-4A0E-ADF4-25E3E26B4ECC}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{86B99789-2786-4A0E-ADF4-25E3E26B4ECC}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{86B99789-2786-4A0E-ADF4-25E3E26B4ECC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{86B99789-2786-4A0E-ADF4-25E3E26B4ECC}.Debug|x64.Build.0 = Debug|Any CPU
+		{86B99789-2786-4A0E-ADF4-25E3E26B4ECC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{86B99789-2786-4A0E-ADF4-25E3E26B4ECC}.Debug|x86.Build.0 = Debug|Any CPU
 		{86B99789-2786-4A0E-ADF4-25E3E26B4ECC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86B99789-2786-4A0E-ADF4-25E3E26B4ECC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86B99789-2786-4A0E-ADF4-25E3E26B4ECC}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{86B99789-2786-4A0E-ADF4-25E3E26B4ECC}.Release|ARM64.Build.0 = Release|Any CPU
+		{86B99789-2786-4A0E-ADF4-25E3E26B4ECC}.Release|x64.ActiveCfg = Release|Any CPU
+		{86B99789-2786-4A0E-ADF4-25E3E26B4ECC}.Release|x64.Build.0 = Release|Any CPU
+		{86B99789-2786-4A0E-ADF4-25E3E26B4ECC}.Release|x86.ActiveCfg = Release|Any CPU
+		{86B99789-2786-4A0E-ADF4-25E3E26B4ECC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

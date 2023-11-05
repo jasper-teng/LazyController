@@ -8,14 +8,23 @@ using System.Security.Policy;
 using Newtonsoft.Json;
 using System.Xml.Linq;
 using LazyController;
+using System.Xml.Serialization;
+using Functions;
 
 namespace ControllerServer
 {
+    //SINGLETON DESIGN BABEE UNITY GETTING HOT
+
     public class HttpServer
     {
         public int Port = 6969;
 
         private HttpListener _listener;
+
+        private RoutesArrayJson jsonConfig;
+
+        //single instance used everywhere.
+        private static HttpServer _instance;
 
         public void Start()
         {
@@ -25,12 +34,20 @@ namespace ControllerServer
             _listener.Start();
             Receive();
 
+            loadConfig();
+        }
 
-            //temp write new shit
-            var data = new RoutesArrayJson();
-            data.routes.Add(new RoutesJson {filePath="aaaaaaaaaaaaaaaa", Route="suckmy", FunctionType = FunctionType.LaunchProgram});
+        //get single instance
+        public static HttpServer GetInstance()
+        {
+            if (_instance != null) return _instance;
+            return _instance = new HttpServer();
+        }
 
-            JsonConfigHelper.WriteJson(data);
+
+        public void loadConfig()
+        {
+            jsonConfig = JsonConfigHelper.ReadJson();
         }
 
         public void Stop()
@@ -56,18 +73,38 @@ namespace ControllerServer
 
                 if(request != null )
                 {
+                    //all the api logic is here
 
-                    string responseString = ";";
-                    if (request.Url.AbsolutePath == "/balls")
-                    {
-                        responseString = "<html><body><h1>Hello, World!</h1></body></html>";
-                    }
-                    else
-                    {
-                        responseString = "<html><body><h1>Hello, ligma!</h1></body></html>";
-                    }
+                    string responseString = "";
+
+                    responseString = "<html><body><h1>Hello, ligma!</h1></body></html>";
+
                     //better idea, get json / list of items, map to the url then execute functions
                     //TODO: that
+
+                    String requestPath = request.Url.AbsolutePath;
+
+                    var query = jsonConfig.routes.FirstOrDefault(x => x.Route == requestPath.Substring(1));
+
+                    if (query != null)
+                    {
+                        switch (query.FunctionType)
+                        {
+                            case FunctionType.LaunchProgram:
+                                AppFunctions.OpenProgram(query.configString);
+                                break;
+
+                            case FunctionType.ToggleVolume:
+                                AppFunctions.ToggleVolume();
+                                break;
+
+                            default:
+                                break;
+                        }
+
+                    }
+
+
 
                     byte[] buffer = Encoding.UTF8.GetBytes(responseString);
 

@@ -1,6 +1,8 @@
 # LazyController
 Control your PC through your phone using local http requests
 
-recommended combining with AutoHotKey to automate workflow even more
+recommended to combine with AutoHotKey to automate tasks.
 
-set the program to run at startup.
+you might need to open up port 6969 on the firewall.
+
+set the program to run at startup with administrator rights.
