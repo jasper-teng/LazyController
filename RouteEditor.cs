@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ControllerServer;
 using System.Xml.Serialization;
+using System.ComponentModel.DataAnnotations;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace LazyController
 {
@@ -39,6 +42,7 @@ namespace LazyController
         {
             RoutesArrayJson savedConfig = new RoutesArrayJson();
 
+
             foreach (UserControl p in this.panel1.Controls)
             {
                 //explicit cast from usercontrol > whatever control
@@ -57,6 +61,15 @@ namespace LazyController
                 }
 
             }
+
+            //perform shoddy validation
+            if(JsonConfigHelper.DuplicateRoutes(savedConfig))
+            {
+                MessageBox.Show("Please remove duplicate routes.", "Duplicate Routes",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
 
             JsonConfigHelper.WriteJson(savedConfig);
 

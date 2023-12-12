@@ -17,10 +17,18 @@ namespace ArisakaController
         static void Main()
         {
             //start vs as admin and open the port
-            //if you dont want to do that you can do this instead
             // netsh http add urlacl url=http://*:6969/ user=Administrator put this into psh
-            HttpServer server = HttpServer.GetInstance();
-            server.Start();
+            try
+            {
+                HttpServer server = HttpServer.GetInstance();
+                server.Start();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString(), "Some title",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
 
 
             ApplicationConfiguration.Initialize();
@@ -28,13 +36,14 @@ namespace ArisakaController
 
             Application.Run(new TaskTrayApplication());
 
-        }
+
+    }
         
 
         public class TaskTrayApplication : ApplicationContext
         {
             private NotifyIcon trayIcon;
-
+            private static string mutexName = "RouteEditor";
             public TaskTrayApplication()
             {
 
@@ -66,7 +75,18 @@ namespace ArisakaController
                     Visible = true
                 };
 
+                trayIcon.MouseDoubleClick += TrayIcon_MouseDoubleClick;
+
                 JsonConfigHelper.ReadJson();
+            }
+
+            private void TrayIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    var form = new RouteEditor();
+                    form.Show();
+                }
             }
 
             void Exit(object sender, EventArgs e)

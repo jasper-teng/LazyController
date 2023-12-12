@@ -11,7 +11,7 @@ namespace LazyController
     {
         static public RoutesArrayJson ReadJson()
         {
-            //we are changing this to Appdata
+            //we are changing this to the folder its in
             var docpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\LazyControllerRoutes.json";
 
             if (!File.Exists(docpath))
@@ -41,6 +41,26 @@ namespace LazyController
             File.WriteAllText(docpath, jsonData);
 
             Console.WriteLine("New JSON file created.");
+        }
+
+        public static bool DuplicateRoutes(RoutesArrayJson json)
+        {
+            return json.routes.GroupBy(x => x.Route).All(g => g.Count() != 1);
+        }
+
+        //check for a valid route using a string
+        public static bool VerifyRoutes(string route)
+        {
+            RoutesArrayJson json = ReadJson();
+
+            if(json == null)
+            {
+                return false;
+            }
+
+            return json.routes.Any(x => x.name == route);
+
+
         }
     }
 }

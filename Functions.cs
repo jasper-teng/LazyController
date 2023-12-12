@@ -13,6 +13,23 @@ namespace Functions
 {
     static class AppFunctions
     {
+        private static Dictionary<FunctionType, Action<String>> FunctionList =
+            new Dictionary<FunctionType, Action<String>>()
+            {
+                {FunctionType.LaunchProgram, new Action<String>(OpenProgram) },
+                {FunctionType.ToggleVolume, new Action<String>(ToggleVolume) }
+            };
+
+        public static void PerformFunction(FunctionType type, string var)
+        {
+            FunctionList[type](var); // this is actually so swag
+            return;
+        }
+
+
+
+        //macro functions
+
         public static void OpenProgram(string filepath) {
             try
             {
@@ -28,10 +45,14 @@ namespace Functions
                 Console.WriteLine("An error occurred: " + ex.Message);
             }
 
+            return;
+
         }
-        public static void ToggleVolume()
+        public static void ToggleVolume(string lol)//scuffed as fuck dude
         {
             KeyboardInputSimulation.ToggleVolume();
+
+            return;
         }
 
     }

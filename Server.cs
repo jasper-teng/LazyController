@@ -88,22 +88,11 @@ namespace ControllerServer
 
                     if (query != null)
                     {
-                        switch (query.FunctionType)
-                        {
-                            case FunctionType.LaunchProgram:
-                                AppFunctions.OpenProgram(query.configString);
-                                break;
-
-                            case FunctionType.ToggleVolume:
-                                AppFunctions.ToggleVolume();
-                                break;
-
-                            default:
-                                break;
-                        }
-
+                        AppFunctions.PerformFunction(query.FunctionType, query.configString);
                     }
-
+                    else { //redirect to the remote web interface, another idea is to send the html thru here
+                        context.Response.Redirect("https://jasperteng.com");
+                    }
 
 
                     byte[] buffer = Encoding.UTF8.GetBytes(responseString);
