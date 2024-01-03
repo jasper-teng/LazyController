@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using ArisakaController;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -60,7 +62,18 @@ namespace LazyController
 
             return json.routes.Any(x => x.name == route);
 
+        }
 
+        public static string ConvertToParameters() //used for passing into the website with parameters
+        {
+            var param = "";
+            RoutesArrayJson routes = ReadJson();
+            foreach(var (value, i) in routes.routes.Select((value, i) => (value, i)))
+            {
+                //get the route and the name
+                param += $"nrpname{i}={value.name}&nrproute{i}={value.Route}&";
+            }
+            return param;
         }
     }
 }

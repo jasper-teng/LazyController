@@ -19,6 +19,8 @@ namespace ControllerServer
     {
         public int Port = 6969;
 
+        public string IP = "";
+
         private HttpListener _listener;
 
         private RoutesArrayJson jsonConfig;
@@ -36,6 +38,8 @@ namespace ControllerServer
 
             loadConfig();
         }
+
+        public void setIP(string ip) => IP = ip;
 
         //get single instance
         public static HttpServer GetInstance()
@@ -91,7 +95,8 @@ namespace ControllerServer
                         AppFunctions.PerformFunction(query.FunctionType, query.configString);
                     }
                     else { //redirect to the remote web interface, another idea is to send the html thru here
-                        context.Response.Redirect("https://jasperteng.com");
+                        string param = JsonConfigHelper.ConvertToParameters();
+                        context.Response.Redirect($"https://jasperteng.com/controller?{JsonConfigHelper.ConvertToParameters()}ip={IP}");
                     }
 
 

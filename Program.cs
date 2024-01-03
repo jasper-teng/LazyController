@@ -56,6 +56,9 @@ namespace ArisakaController
                     localIP = endPoint.Address.ToString();
                 }
 
+                HttpServer server = HttpServer.GetInstance();
+                server.setIP(localIP);
+
 
                 // Initialize Tray Icon
                 trayIcon = new NotifyIcon()
